@@ -47,7 +47,7 @@ NS_CC_BEGIN
 /** @class Layer
  * @brief Layer is a subclass of Node
 */
-class CC_DLL Layer : public Sprite
+class CC_DLL Layer : public Node
 {
 public:    
     /** Creates a fullscreen black layer.
@@ -80,7 +80,7 @@ All features from Layer are valid, plus the following new features:
 - opacity
 - RGB colors
 */
-class CC_DLL LayerColor : public Layer
+class CC_DLL LayerColor : public Sprite
 {
 public:
 
@@ -329,6 +329,9 @@ public:
     void setEndColor(const Color4B& color);
     Color4B getEndColor() const;
     Color3B getEndColor3B() const;
+
+    void setBlendFunc(const BlendFunc& blendFunc);
+    BlendFunc getBlendFunc() const;
     
 CC_CONSTRUCTOR_ACCESS:
     LayerRadialGradient();
@@ -350,6 +353,8 @@ private:
     float _radius = 0.f;
     float _expand = 0.f;
     CustomCommand _customCommand;
+
+    BlendFunc _blendFunc = BlendFunc::ALPHA_NON_PREMULTIPLIED;
     
     backend::UniformLocation _mvpMatrixLocation;
     backend::UniformLocation _startColorLocation;

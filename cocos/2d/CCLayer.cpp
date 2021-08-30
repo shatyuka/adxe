@@ -63,7 +63,6 @@ Layer::~Layer() {}
 
 bool Layer::init()
 {
-    Sprite::init();
     setContentSize(_director->getWinSize());
     return true;
 }
@@ -586,6 +585,16 @@ Color4B LayerRadialGradient::getEndColor() const
 Color3B LayerRadialGradient::getEndColor3B() const
 {
     return Color3B(_endColor);
+}
+
+void LayerRadialGradient::setBlendFunc(const BlendFunc& blendFunc)
+{
+    _blendFunc = blendFunc;
+}
+
+BlendFunc LayerRadialGradient::getBlendFunc() const
+{
+    return _blendFunc;
 }
 
 void LayerRadialGradient::convertColor4B24F(Color4F& outColor, const Color4B& inColor)
