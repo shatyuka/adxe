@@ -24,6 +24,7 @@
  ****************************************************************************/
 
 #include "HelloWorldScene.h"
+#include "spine/spine-cocos2dx.h"
 
 USING_NS_CC;
 
@@ -104,6 +105,12 @@ bool HelloWorld::init()
     }
     else
     {
+        // repreduce the issue on: https://github.com/EsotericSoftware/spine-runtimes/issues/1995
+        spine::SkeletonAnimation* anim = spine::SkeletonAnimation::createWithFile("spine/11105.json", "spine/11105.atlas");
+        anim->setAnimation(0, "attack", true);
+        this->addChild(anim, 10);
+        anim->setPosition(Vec2(origin.x + visibleSize.width / 2, 5));
+
         // position the sprite on the center of the screen
         sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
